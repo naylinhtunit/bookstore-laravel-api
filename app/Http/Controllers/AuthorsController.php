@@ -82,7 +82,8 @@ class AuthorsController extends Controller
     {
         //
         $author->update([
-            'name' => 'Kalin'
+            // 'name' => 'Kalin'
+            'name' => $request->input('name')
         ]);
 
         return new AuthorsResource($author);
@@ -97,5 +98,7 @@ class AuthorsController extends Controller
     public function destroy(Author $author)
     {
         //
+        $author->delete();
+        return response(null, 204);
     }
 }

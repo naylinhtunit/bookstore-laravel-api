@@ -29,7 +29,9 @@
 
 * <code>php artisan tinker</code>
 
-* <code>DB::table('users')->insert(['name'=>'aung aung', 'email'=>'info@bookstore.com', 'password'=>Hash::make('info1234')]);</code>
+```
+DB::table('users')->insert(['name'=>'aung aung', 'email'=>'info@bookstore.com', 'password'=>Hash::make('info1234')]);
+```
 
 * <code>exit;</code>
 
@@ -127,17 +129,84 @@ $author = Author::create([
 return new AuthorsResource($author);
 ```
 
-* Chant <code>false</code> to <code>ture</code> in StoreAuthorRequest
+* Change <code>false</code> to <code>ture</code> in StoreAuthorRequest
 
+```
+ public function rules()
+{
+    return [
+        'name' => 'required|unique:authors|max:255'
+    ];
+}
+```
 
 * AuthorsController > update
 
 ```
 $author->update([
-    'name' => 'Kalin'
+    //'name' => 'Kalin'
+    'name' => $request->input('name')
 ]);
 
 return new AuthorsResource($author);
 ```
 
-* Chant <code>false</code> to <code>ture</code> in UpdateAuthorRequest
+* Change <code>false</code> to <code>ture</code> in UpdateAuthorRequest
+
+```
+ public function rules()
+{
+    return [
+        'name' => 'required|unique:authors|max:255'
+    ];
+}
+```
+
+* AuthorsController > destroy
+
+```
+$author->delete();
+return response(null, 204);
+```
+
+# Creating to a bookstore
+
+* <code>php artisan make:model Book -a</code>
+
+* <code>php artisan make:migration create_book_author_table</code>
+
+* <code>php artisan make:resource BooksResource</code>
+
+* <code>php artisan tinker</code>
+
+```
+DB::table('book_author')->insert(['author_id'=>2, 'book_id'=>1]);
+```
+
+* <code>php artisan make:model BookAuthor -a</code>
+
+* Models > BookAuthor
+
+```
+public function author()
+{
+    return $this->hasManyThrough(
+        'App\Models\Author',
+        'App\Models\BookAuthor',
+        'book_id',
+        'id',
+        'id',
+        'author_id',
+    );
+}
+```
+
+* you can hidden in author model
+
+```
+protected $hidden = [
+    'laravel_through_key',
+    'created_at',
+    'updated_at',
+];
+```
