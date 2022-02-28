@@ -39,9 +39,11 @@
 
 * Test api Route
 
-* <code>Route::get('/test', function(Request $request){
+```
+Route::get('/test', function(Request $request){
     return 'Authenticated';
-});</code>
+});
+```
 
 * step(1)
 
