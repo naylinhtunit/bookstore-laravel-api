@@ -58,3 +58,45 @@
 * paste <code>key => Authorization</code> and <code>value => Bearer (access token)</code>
 
 <img src="https://i.ibb.co/G5CzfbH/3.png" alt="3" border="0">
+
+# Building Resources
+
+* Model, Factory, Table, Seeder and Controller
+
+* <code>php artisan make:model -a -r Author</code>
+
+* Database > factories > AuthorFactory.php
+
+* <code>'name' => $this->faker->name</code>
+
+* Database > seeders > AuthorSeeder.php
+
+* <code>\App\Models\Author::factory(5)->create();</code>
+
+* Database > seeders > DatabaseSeeder.php
+
+* <code>$this->call(AuthorSeeder::class);</code>
+
+* <code>php artisan migrate --seed</code>
+
+* Resource create <code>php artisan make:resource AuthorsResource</code>
+
+* AuthorsController
+
+* <code>use App\Http\Resources\AuthorsResource;</code>
+
+* <code>return new AuthorsResource($author);</code>
+
+* app > Http > Resources > AuthorResource
+
+* <code>
+return [
+        'id' => $this->id,
+            'type' => 'Authors',
+            'attributes' => [
+                'name' => $this->name,
+                'created_at' => $this->created_at,
+                'updated_at' => $this->updated_at,
+            ]
+        ];
+</code>
