@@ -43,8 +43,18 @@
     return 'Authenticated';
 });</code>
 
+* step(1)
+
 <img src="https://i.ibb.co/yk6P4BF/1.png" alt="1" border="0">
 
+* step(2)
+
+* copy access token
+
 <img src="https://i.ibb.co/TPwfWSJ/2.png" alt="2" border="0">
+
+* step(3)
+
+* paste <code>key => Authorization</code> and <code>value => Bearer (access token)</code>
 
 <img src="https://i.ibb.co/G5CzfbH/3.png" alt="3" border="0">
