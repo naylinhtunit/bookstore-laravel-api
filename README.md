@@ -89,7 +89,7 @@
 
 * app > Http > Resources > AuthorResource
 
-* <code>
+```
 return [
         'id' => $this->id,
             'type' => 'Authors',
@@ -100,3 +100,4 @@ return [
             ]
         ];
 </code>
+```
