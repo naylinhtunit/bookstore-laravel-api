@@ -29,8 +29,10 @@ Route::middleware('auth:api')->prefix('v1')->group(function(){
         return $request->user();
     });
 
-    // authors/{author}
-    // For one specific author
-    Route::get('/authors/{author}', [AuthorsController::class, 'show']);
+    // Route::get('/authors', [AuthorsController::class, 'index']);
+    // Route::post('/authors', [AuthorsController::class, 'store']);
+    // Route::get('/authors/{author}', [AuthorsController::class, 'show']);
+
+    Route::apiResource('/authors', AuthorsController::class);
 
 });

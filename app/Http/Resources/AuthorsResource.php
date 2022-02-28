@@ -16,7 +16,9 @@ class AuthorsResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
-            'id' => $this->id,
+            // 'id' => $this->id,
+            //change string
+            'id' => (string)$this->id,
                 'type' => 'Authors',
                 'attributes' => [
                     'name' => $this->name,
